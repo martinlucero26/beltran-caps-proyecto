@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Beltrán</title>
+    <style>
+        /* Estilos básicos */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding-top: 40px;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            flex-direction: column;
+            gap: 20px; /* Espacio entre el carrusel y el botón */
+        }
+
+        .carousel-container {
+            width: 80%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Botones de navegación */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            font-size: 2em;
+            padding: 0 10px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Botón de regreso a la página principal */
+        .home-button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .home-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="./assets/BELCARRU1.JPG" alt="Imagen 1 de Beltrán">
+            <img src="./assets/BELTRAN CARRU 3.jpg" alt="Imagen 3 de Beltrán">
+            <img src="./assets/BELTRAN CARRU 4.jpg" alt="Imagen 4 de Beltrán">
+        </div>
+        <button class="nav-button prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="nav-button next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <a href="index.html" class="home-button">Volver a la Página Principal</a>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel img');
+        
+        function showSlide(index) {
+            currentIndex = (index + slides.length) % slides.length;
+            const offset = -currentIndex * 100;
+            document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+        }
+
+        function moveSlide(step) {
+            showSlide(currentIndex + step);
+        }
+    </script>
+</body>
+</html>
